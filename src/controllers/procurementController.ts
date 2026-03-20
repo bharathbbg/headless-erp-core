@@ -48,14 +48,14 @@ export const updatePurchaseOrderStatus = async (req: Request, res: Response, nex
         const targetStatus = validatedData.status;
         const agentName = validatedData.agentName || 'UNKNOWN';
 
-        // Industrial Safety Rule: > 100,000 INR requires human 'Bharath'
-        if (targetStatus === PurchaseOrderStatus.APPROVED && purchaseOrder.totalAmount > 100000 && agentName !== 'Bharath') {
+        // Industrial Safety Rule: > 100,000 INR requires human 'Admin'
+        if (targetStatus === PurchaseOrderStatus.APPROVED && purchaseOrder.totalAmount > 100000 && agentName !== 'Admin') {
             purchaseOrder.status = PurchaseOrderStatus.AWAITING_HUMAN_CONFIRMATION;
             await purchaseOrder.save();
             return res.status(403).json({
                 success: false,
                 data: purchaseOrder,
-                error: 'Safety Limit Exceeded: Orders > 100,000 INR require manual approval by Bharath (Human). Status set to AWAITING_HUMAN_CONFIRMATION.',
+                error: 'Safety Limit Exceeded: Orders > 100,000 INR require manual approval by Admin (Human). Status set to AWAITING_HUMAN_CONFIRMATION.',
             });
         }
 
