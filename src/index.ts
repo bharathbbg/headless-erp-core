@@ -6,6 +6,7 @@ import errorHandler from './middleware/errorHandler.js';
 import inventoryRoutes from './routes/inventoryRoutes.js';
 import procurementRoutes from './routes/procurementRoutes.js';
 import auditRoutes from './routes/auditRoutes.js';
+import vendorRoutes from './routes/vendorRoutes.js';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/procurement', procurementRoutes);
 app.use('/api/audit', auditRoutes);
+app.use('/api/vendor', vendorRoutes);
 
 // Health Check
 app.get('/health', (req: Request, res: Response) => {
