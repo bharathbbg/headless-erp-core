@@ -16,4 +16,5 @@ export const updateStatusSchema = z.object({
     status: z.nativeEnum(PurchaseOrderStatus, {
         errorMap: (issue, ctx) => ({ message: 'Invalid purchase order status' }),
     }),
+    agentName: z.string().optional(),
 });

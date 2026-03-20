@@ -2,6 +2,7 @@ import { Schema, model, Document, Types } from 'mongoose';
 
 export enum PurchaseOrderStatus {
     PENDING_APPROVAL = 'PENDING_APPROVAL',
+    AWAITING_HUMAN_CONFIRMATION = 'AWAITING_HUMAN_CONFIRMATION',
     APPROVED = 'APPROVED',
     REJECTED = 'REJECTED',
     ORDERED = 'ORDERED',

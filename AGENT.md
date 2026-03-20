@@ -56,8 +56,8 @@ Build a new MCP Server that wraps the Headless ERP API.
 - `list_pending_approvals`: GETs all POs requiring manager intervention.
 - `approve_po`: PATCHes a PO status to 'APPROVED'.
 
-## Phase 3: The Multi-Agent Swarm Logic
-We will define two distinct Agent Personas and a "Handoff" protocol.
+## Phase 3: The Multi-Agent Swarm Logic (Complete)
+We have defined two distinct Agent Personas and a "Handoff" protocol. See [PERSONAS.md](./PERSONAS.md) for details.
 
 ### Agent 1: The "Procurement Officer" (The Worker)
 - **Objective:** Ensure stock never runs out.
@@ -74,6 +74,6 @@ We will define two distinct Agent Personas and a "Handoff" protocol.
     3. Use internal "Budget Rules" (e.g., "Auto-approve if < 50,000 INR").
     4. Call `approve_po` or `reject_po`.
 
-## Phase 4: Industrial Safety & Auditing
-- **Human-in-the-Loop:** For orders > 100,000 INR, the Agent must pause and ask for Bharath's manual confirmation.
-- **Audit Log:** Every tool call must be logged in a `system_logs` collection in MongoDB Atlas, identifying *which* agent made the call.
+## Phase 4: Industrial Safety & Auditing (Complete)
+- **Human-in-the-Loop:** Implemented logic where orders > 100,000 INR are blocked from automatic approval and set to `AWAITING_HUMAN_CONFIRMATION` unless approved by 'Bharath'.
+- **Audit Log:** Every tool call and internal status update is logged with metadata including `agentName`, `toolName`, `arguments`, and `timestamp`.
